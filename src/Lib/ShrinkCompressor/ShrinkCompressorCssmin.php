@@ -3,7 +3,7 @@ namespace Shrink\Lib\ShrinkCompressor;
 
 use Shrink\Lib\ShrinkCompressor\ShrinkCompressorInterface;
 use Shrink\Lib\ShrinkBase;
-use CssMin;
+use tubalmartin\CssMin\Minifier as CSSmin;
 
 class ShrinkCompressorCssmin extends ShrinkBase implements ShrinkCompressorInterface{
 
@@ -16,8 +16,8 @@ class ShrinkCompressorCssmin extends ShrinkBase implements ShrinkCompressorInter
 	* Determine if there is support for this compressor
 	* @return boolean - true if there is support
 	*/
-	public function isAvailable(){
-		return class_exists('CssMin');
+	public function isAvailable(){		
+		return class_exists(CSSmin::class);
 	}
 
 
@@ -27,9 +27,11 @@ class ShrinkCompressorCssmin extends ShrinkBase implements ShrinkCompressorInter
 	* @return string - code string minified/processed as requested
 	*/
 	public function compress($code){
-		
 		if($this->isAvailable()){
-        	$code = CssMin::minify($code);
+			$compressor = new CSSmin;
+			$compressor->setLineBreakPosition(1000);
+			$compressor->removeImportantComments();
+			$code = $compressor->run($code);
         }
 
 		return $code;
