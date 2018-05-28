@@ -1,9 +1,9 @@
 {
-	"name": "trentrichardson/cakephp-shrink",
+	"name": "andreinocenti/cakephp-inocenti_shrink",
 	"type": "cakephp-plugin",
 	"description": "Compiles, combines, and minifies javascript, coffee, less, scss, and css",
 	"keywords": ["cakephp","javascript","less","css","scss","sass","coffee","minify"],
-	"homepage": "http://github.com/trentrichardson/cakephp-shrink",
+	"homepage": "https://github.com/andreinocenti/cakephp-inocenti_shrink",
 	"license": "MIT",
 	"autoload": {
 	    "psr-4": {
