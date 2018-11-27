@@ -157,6 +157,10 @@ class Shrink{
 					$output .= "/* ". $v['rel_path'] ." */\n";
 					$code = $this->compilers[$lang]->compile($v['file']);
 					$code = $this->compressors[$compressorName]->compress($code);
+					// check if code is JS. If it is and last char isn't semicolon, add it. 
+					if ($lang === 'js' && mb_substr($code, -1) !== ';')
+						$code .= ';';
+
 					$output .= $code ."\n";
 				}
 
