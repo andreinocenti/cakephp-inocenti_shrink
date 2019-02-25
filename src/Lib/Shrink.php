@@ -140,6 +140,9 @@ class Shrink{
 			foreach($files as $k=>$v){
 				$lang = substr($v['file']->name, strrpos($v['file']->name, '.') + 1);
 
+				if (!$lang)
+					continue;
+
 				// load compiler if it is not already
 				if(!isset($this->compilers[$lang])){
 					$this->compilers[$lang] = ShrinkType::getCompiler($lang,$this->settings);
